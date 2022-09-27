@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Cryptocurrencies</string>
+
+    <string name="coins_list_title">Список криптовалют</string>
+    <string name="usd">usd</string>
+    <string name="eur">eur</string>
+    <string name="usd_price">$ %f</string>
+    <string name="eur_price">€ %f</string>
+    <string name="change_percentage_plus">+ %,.2f</string>
+    <string name="change_percentage_minus">- %,.2f</string>
+    <string name="description">Описание</string>
+    <string name="categories">Категории</string>
+    <string name="error">Случилась какая-то ошибка :(\nПопробуем снова?</string>
+    <string name="error_pull_refresh">Произошла ошибка при загрузке</string>
+    <string name="error_try_again">Попробовать</string>
 </resources>
