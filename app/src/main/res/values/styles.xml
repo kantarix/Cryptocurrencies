@@ -1,4 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--  fragment_coins_list  -->
+    <style name="toolbar_title">
+        <item name="fontFamily">@font/roboto_500</item>
+        <item name="android:textSize">@dimen/text_20</item>
+        <item name="android:textColor">@color/black_87</item>
+    </style>
 
+    <style name="currency_chip_regular">
+        <item name="fontFamily">@font/roboto_400</item>
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:textColor">@color/black_87</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
+    <style name="coin_name">
+        <item name="fontFamily">@font/plus_jakarta_sans_500</item>
+        <item name="android:textSize">@dimen/text_16</item>
+        <item name="android:textColor">@color/emperor</item>
+    </style>
+
+    <style name="coin_symbol">
+        <item name="fontFamily">@font/plus_jakarta_sans_400</item>
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:textColor">@color/dusty_gray</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
+    <style name="coin_price">
+        <item name="fontFamily">@font/plus_jakarta_sans_600</item>
+        <item name="android:textSize">@dimen/text_16</item>
+        <item name="android:textColor">@color/emperor</item>
+    </style>
+
+    <style name="coin_change_percentage">
+        <item name="fontFamily">@font/plus_jakarta_sans_400</item>
+        <item name="android:textSize">@dimen/text_14</item>
+    </style>
+
+    <style name="error_description">
+        <item name="fontFamily">@font/plus_jakarta_sans_400</item>
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="error_btn">
+        <item name="fontFamily">@font/roboto_500</item>
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
+    <style name="error_pull_refresh">
+        <item name="fontFamily">@font/roboto_400</item>
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <!--  fragment_coins_list  -->
+
+    <!--  fragment_coin  -->
+    <style name="description_title">
+        <item name="fontFamily">@font/roboto_500</item>
+        <item name="android:textSize">@dimen/text_20</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="description_text">
+        <item name="fontFamily">@font/roboto_400</item>
+        <item name="android:textSize">@dimen/text_16</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <!--  fragment_coin  -->
 </resources>
