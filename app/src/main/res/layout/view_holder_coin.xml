@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/space_16"
+    android:paddingTop="@dimen/space_8"
+    android:paddingEnd="@dimen/space_16"
+    android:paddingBottom="@dimen/space_8">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/coin_image"
+        android:layout_width="@dimen/space_40"
+        android:layout_height="@dimen/space_40"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_coin" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/coin_name"
+        style="@style/coin_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_8"
+        app:layout_constraintStart_toEndOf="@id/coin_image"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Bitcoin" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/coin_symbol"
+        style="@style/coin_symbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/coin_image"
+        tools:text="btc" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/coin_price"
+        style="@style/coin_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="$ 28,600.74" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/coin_change_percentage"
+        style="@style/coin_change_percentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="+ 4.05%" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
