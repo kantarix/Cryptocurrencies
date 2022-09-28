@@ -9,6 +9,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.kantarix.cryptocurrencies.R
+import com.kantarix.cryptocurrencies.data.CoinsRepository
+import com.kantarix.cryptocurrencies.data.remote.CoinApiService
+import com.kantarix.cryptocurrencies.data.remote.NetworkModule
+import com.kantarix.cryptocurrencies.data.remote.NoConnectionInterceptor
 import com.kantarix.cryptocurrencies.model.Coin
 
 class CoinsListFragment : Fragment() {
@@ -38,6 +42,7 @@ class CoinsListFragment : Fragment() {
         initViews()
         setUpListeners()
         setUpCoinsAdapter()
+
     }
 
     override fun onDestroy() {

@@ -1,6 +1,7 @@
 package com.kantarix.cryptocurrencies.data.remote
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -24,12 +25,13 @@ class NetworkModule(noConnectionInterceptor: NoConnectionInterceptor) {
         .addInterceptor(noConnectionInterceptor)
         .build()
 
+    @OptIn(ExperimentalSerializationApi::class)
     private val retrofit = Retrofit.Builder()
         .baseUrl(baseUrl + version)
         .addConverterFactory(json.asConverterFactory(contentType))
         .client(httpClient)
         .build()
 
-    //val api: CoinsApiService by lazy { retrofit.create(CoinsApiService::class.java) }
+    val api: CoinApiService by lazy { retrofit.create(CoinApiService::class.java) }
 
 }
