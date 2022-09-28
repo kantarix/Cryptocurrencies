@@ -126,6 +126,9 @@ class CoinsListFragment : Fragment() {
         rvCoins = null
         chipUsd = null
         chipEur = null
+        errorView = null
+        errorBtn = null
+        loadingView = null
     }
 
     companion object {
