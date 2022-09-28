@@ -2,12 +2,19 @@ package com.kantarix.cryptocurrencies
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.kantarix.cryptocurrencies.data.CoinsRepository
+import com.kantarix.cryptocurrencies.data.remote.NetworkModule
+import com.kantarix.cryptocurrencies.data.remote.NoConnectionInterceptor
 import com.kantarix.cryptocurrencies.presentation.coin.CoinDetailsFragment
 import com.kantarix.cryptocurrencies.presentation.coinslist.CoinsListFragment
 
 class MainActivity : AppCompatActivity(),
     CoinsListFragment.CoinItemClickListener,
-    BackClickListener {
+    BackClickListener,
+    CoinsRepositoryProvider {
+
+    private val networkModule = NetworkModule(NoConnectionInterceptor(context = this))
+    private val coinsRepository = CoinsRepository(networkModule.api)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +46,8 @@ class MainActivity : AppCompatActivity(),
             .commit()
     }
 
+    override fun provideCoinsRepository(): CoinsRepository = coinsRepository
+
     companion object {
         private const val FRAGMENT_COINS_LIST = "coins_list"
         private const val FRAGMENT_COIN_DETAILS = "coin_details"
@@ -48,4 +57,8 @@ class MainActivity : AppCompatActivity(),
 
 interface BackClickListener {
     fun onBackClick()
+}
+
+internal interface CoinsRepositoryProvider {
+    fun provideCoinsRepository(): CoinsRepository
 }
