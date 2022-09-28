@@ -7,7 +7,7 @@
     <string name="usd_price">$ %,.2f</string>
     <string name="eur_price">€ %,.2f</string>
     <string name="change_percentage_plus">+ %.2f%%</string>
-    <string name="change_percentage_minus">%.2f%%</string>
+    <string name="change_percentage_minus">- %.2f%%</string>
     <string name="description">Описание</string>
     <string name="categories">Категории</string>
     <string name="error">Случилась какая-то ошибка :(\nПопробуем снова?</string>

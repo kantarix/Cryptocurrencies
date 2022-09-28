@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.kantarix.cryptocurrencies.R
 import com.kantarix.cryptocurrencies.model.Coin
+import java.util.*
+import kotlin.math.abs
 
 class CoinsAdapter(
     var currency: String,
@@ -42,27 +44,27 @@ class CoinsAdapter(
             name.text = coin.name
             symbol.text = coin.symbol
             price.text = when (currency) {
-                "usd" -> itemView.context.getString(R.string.usd_price, coin.currentPrice)
-                "eur" -> itemView.context.getString(R.string.eur_price, coin.currentPrice)
-                else -> itemView.context.getString(R.string.usd_price, coin.currentPrice)
+                "usd" -> itemView.context.getString(R.string.usd_price).format(Locale.ENGLISH, coin.currentPrice)
+                "eur" -> itemView.context.getString(R.string.eur_price).format(Locale.ENGLISH, coin.currentPrice)
+                else -> itemView.context.getString(R.string.usd_price).format(Locale.ENGLISH, coin.currentPrice)
             }
-            setPercentage(changePercentage, coin.changePercentage24h)
+            setPercentage(coin.changePercentage24h)
 
             itemView.setOnClickListener { onClickCard(coin) }
         }
 
-        private fun setPercentage(view: View, percentage: Double) {
+        private fun setPercentage(percentage: Double) {
             when {
                 percentage > 0 -> {
-                    changePercentage.text = itemView.context.getString(R.string.change_percentage_plus, percentage)
+                    changePercentage.text = itemView.context.getString(R.string.change_percentage_plus).format(Locale.ENGLISH, abs(percentage))
                     changePercentage.setTextColor(ContextCompat.getColor(itemView.context, R.color.jungle_green))
                 }
                 percentage < 0 -> {
-                    changePercentage.text = itemView.context.getString(R.string.change_percentage_minus, percentage)
+                    changePercentage.text = itemView.context.getString(R.string.change_percentage_minus).format(Locale.ENGLISH, abs(percentage))
                     changePercentage.setTextColor(ContextCompat.getColor(itemView.context, R.color.burnt_sienna))
                 }
                 else -> {
-                    changePercentage.text = itemView.context.getString(R.string.change_percentage_minus, percentage)
+                    changePercentage.text = itemView.context.getString(R.string.change_percentage_minus).format(Locale.ENGLISH, abs(percentage))
                 }
             }
         }

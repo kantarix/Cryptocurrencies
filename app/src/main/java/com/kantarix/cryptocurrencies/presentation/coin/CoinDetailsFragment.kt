@@ -115,6 +115,9 @@ class CoinDetailsFragment : Fragment() {
         toolbar?.setNavigationOnClickListener {
             listener?.onBackClick()
         }
+        errorBtn?.setOnClickListener {
+            viewModel.loadCoin(coinId)
+        }
     }
 
     private fun destroyViews() {

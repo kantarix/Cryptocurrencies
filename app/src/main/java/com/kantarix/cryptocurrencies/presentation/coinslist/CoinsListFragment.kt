@@ -112,6 +112,9 @@ class CoinsListFragment : Fragment() {
             val currency = chipEur?.text ?: CoinsViewModel.USD
             updateCurrency(currency.toString())
         }
+        errorBtn?.setOnClickListener {
+            viewModel.loadCoins()
+        }
     }
 
     private fun setUpCoinsAdapter() {
