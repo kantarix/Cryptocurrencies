@@ -1,4 +1,4 @@
-package com.kantarix.cryptocurrencies.presentation.coinslist
+package com.kantarix.cryptocurrencies.presentation.coin
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,16 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import com.kantarix.cryptocurrencies.R
 
-class CoinsListFragment : Fragment() {
+class CoinDetailsFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_coins_list, container, false)
+        return inflater.inflate(R.layout.fragment_coin_details, container, false)
     }
 
     companion object {
-        fun newInstance() = CoinsListFragment()
+        fun newInstance() = CoinDetailsFragment()
     }
 }

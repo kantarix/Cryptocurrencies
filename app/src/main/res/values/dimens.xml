@@ -6,6 +6,7 @@
     <dimen name="space_20">20dp</dimen>
     <dimen name="space_32">32dp</dimen>
     <dimen name="space_40">40dp</dimen>
+    <dimen name="space_90">90dp</dimen>
     <dimen name="space_175">175dp</dimen>
 
     <dimen name="text_14">14sp</dimen>
