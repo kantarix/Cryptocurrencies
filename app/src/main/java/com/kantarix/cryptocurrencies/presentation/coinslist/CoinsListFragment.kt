@@ -57,8 +57,12 @@ class CoinsListFragment : Fragment() {
     }
 
     private fun setUpListeners() {
-        chipUsd?.setOnClickListener { coinsAdapter.currency = usd }
-        chipEur?.setOnClickListener { coinsAdapter.currency = eur }
+        chipUsd?.setOnClickListener {
+            val currency = chipUsd?.text ?: CoinsViewModel.USD
+        }
+        chipEur?.setOnClickListener {
+            val currency = chipEur?.text ?: CoinsViewModel.USD
+        }
     }
 
     private fun setUpCoinsAdapter() {
