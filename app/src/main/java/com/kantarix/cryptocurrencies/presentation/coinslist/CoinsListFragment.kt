@@ -1,6 +1,7 @@
 package com.kantarix.cryptocurrencies.presentation.coinslist
 
 import android.content.Context
+import android.graphics.Color
 import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,9 +10,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.chip.Chip
+import com.google.android.material.snackbar.Snackbar
 import com.kantarix.cryptocurrencies.CoinsRepositoryProvider
 import com.kantarix.cryptocurrencies.R
 import com.kantarix.cryptocurrencies.data.CoinsRepository
@@ -30,6 +37,7 @@ class CoinsListFragment : Fragment() {
     private var errorView: LinearLayout? = null
     private var errorBtn: AppCompatButton? = null
     private var loadingView: ProgressBar? = null
+    private var swipeRefresh: SwipeRefreshLayout? = null
 
     private var chipUsd: Chip? = null
     private var chipEur: Chip? = null
@@ -58,7 +66,7 @@ class CoinsListFragment : Fragment() {
         viewModel.coinsList.observe(this.viewLifecycleOwner, this::updateList)
         viewModel.state.observe(this.viewLifecycleOwner, this::updateState)
 
-        if (savedInstanceState == null) viewModel.loadCoins()
+        viewModel.loadCoins()
 
     }
 
@@ -78,20 +86,58 @@ class CoinsListFragment : Fragment() {
     }
 
     private fun updateState(state: ViewState) {
-        loadingView?.visibility = View.GONE
-        rvCoins?.visibility = View.GONE
-        errorView?.visibility = View.GONE
         when (state) {
             is ViewState.Error -> {
-                errorView?.visibility = View.VISIBLE
+                if (swipeRefresh?.isRefreshing == true) {
+                    showSwipeRefresh(false)
+                    showErrorSnackbar()
+                } else {
+                    showLoadingView(false)
+                    showErrorView(true)
+                }
             }
             is ViewState.Loading -> {
-                loadingView?.visibility = View.VISIBLE
+                showErrorView(false)
+                if (swipeRefresh?.isRefreshing == true) {
+                    showCoinsRv(true)
+                } else {
+                    showLoadingView(true)
+                    showCoinsRv(false)
+                }
             }
             is ViewState.Result -> {
-                rvCoins?.visibility = View.VISIBLE
+                if (swipeRefresh?.isRefreshing == true) {
+                    showSwipeRefresh(false)
+                } else {
+                    showLoadingView(false)
+                    showCoinsRv(true)
+                }
             }
         }
+    }
+
+    private fun showErrorSnackbar() {
+        swipeRefresh?.let {
+            Snackbar.make(it, getString(R.string.error_pull_refresh), Snackbar.LENGTH_SHORT)
+                .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.burnt_sienna))
+                .show()
+        }
+    }
+
+    private fun showLoadingView(bool: Boolean) {
+        loadingView?.isVisible = bool
+    }
+
+    private fun showCoinsRv(bool: Boolean) {
+        rvCoins?.isVisible = bool
+    }
+
+    private fun showErrorView(bool: Boolean) {
+        errorView?.isVisible = bool
+    }
+
+    private fun showSwipeRefresh(bool: Boolean) {
+        swipeRefresh?.isRefreshing = bool
     }
 
     private fun initViews() {
@@ -100,7 +146,8 @@ class CoinsListFragment : Fragment() {
         rvCoins = view?.findViewById(R.id.coins_list_rv)
         errorView = view?.findViewById(R.id.error_view)
         errorBtn = view?.findViewById(R.id.error_btn)
-        loadingView= view?.findViewById(R.id.loading_view)
+        loadingView = view?.findViewById(R.id.loading_view)
+        swipeRefresh = view?.findViewById(R.id.swipe_refresh)
     }
 
     private fun setUpListeners() {
@@ -113,6 +160,9 @@ class CoinsListFragment : Fragment() {
             updateCurrency(currency.toString())
         }
         errorBtn?.setOnClickListener {
+            viewModel.loadCoins()
+        }
+        swipeRefresh?.setOnRefreshListener {
             viewModel.loadCoins()
         }
     }
@@ -132,6 +182,7 @@ class CoinsListFragment : Fragment() {
         errorView = null
         errorBtn = null
         loadingView = null
+        swipeRefresh = null
     }
 
     companion object {
