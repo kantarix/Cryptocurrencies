@@ -1,5 +1,7 @@
 # Cryptocurrencies
 
+<img alt="Coins list" height="600px" src="/screenshots/screen_coins_list.png" /> <img alt="Coin details" height="600px" src="/screenshots/screen_coin_details.png" />
+
 Декомпозиция:
 
 1. Подготовка проекта. (0,5 ч)
