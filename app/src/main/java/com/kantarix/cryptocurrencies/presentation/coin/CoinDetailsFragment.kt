@@ -2,23 +2,21 @@ package com.kantarix.cryptocurrencies.presentation.coin
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.ProgressBar
-import android.widget.Toolbar
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.google.android.material.appbar.AppBarLayout
 import com.kantarix.cryptocurrencies.BackClickListener
 import com.kantarix.cryptocurrencies.CoinsRepositoryProvider
 import com.kantarix.cryptocurrencies.R
-import com.kantarix.cryptocurrencies.model.Coin
 import com.kantarix.cryptocurrencies.model.CoinDetails
 import com.kantarix.cryptocurrencies.presentation.ViewState
 import com.kantarix.cryptocurrencies.presentation.coinslist.CoinsViewModel
@@ -27,8 +25,9 @@ import kotlin.properties.Delegates
 class CoinDetailsFragment : Fragment() {
     private lateinit var viewModel: CoinsViewModel
     private var coinId by Delegates.notNull<String>()
+
     private var listener: BackClickListener? = null
-    private var toolbar: androidx.appcompat.widget.Toolbar? = null
+    private var toolbar: Toolbar? = null
     private var detailsView: ConstraintLayout? = null
     private var errorView: LinearLayout? = null
     private var errorBtn: AppCompatButton? = null
@@ -37,15 +36,15 @@ class CoinDetailsFragment : Fragment() {
     private var coinDescription: AppCompatTextView? = null
     private var coinCategories: AppCompatTextView? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let { coinId = it.getString(PARAM_COIN).toString() }
-    }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is BackClickListener)
             listener = context
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let { coinId = it.getString(PARAM_COIN).toString() }
     }
 
     override fun onCreateView(

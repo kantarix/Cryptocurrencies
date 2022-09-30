@@ -34,7 +34,6 @@ class CoinsViewModel(private val coinsRepo: CoinsRepository) : ViewModel() {
                     _state.postValue(ViewState.Result)
                 }
                 is Result.ErrorResult -> {
-                    _coinsList.postValue(emptyList())
                     _state.postValue(ViewState.Error(result.e))
                 }
                 else -> {

@@ -64,7 +64,7 @@ class CoinsAdapter(
                     changePercentage.setTextColor(ContextCompat.getColor(itemView.context, R.color.burnt_sienna))
                 }
                 else -> {
-                    changePercentage.text = itemView.context.getString(R.string.change_percentage_minus).format(Locale.ENGLISH, abs(percentage))
+                    changePercentage.text = itemView.context.getString(R.string.change_percentage_regular).format(Locale.ENGLISH, abs(percentage))
                 }
             }
         }
